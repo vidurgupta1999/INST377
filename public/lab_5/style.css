@@ -61,7 +61,7 @@ html, body {
   }
   
   body > * {
-    background-color: red;
+    background-color: lightblue;
     padding: 1%;
   }
   
