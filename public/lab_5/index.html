@@ -52,13 +52,15 @@
                     </li>
                     <li>
                         <button type="button" class="button" name="Submit" onclick="submitform()">Submit</button>
-                         <input type="submit" value="Submit">
-                        <script>
-                         function submitform() {
-                         document.getElementById('form1').submit();
-                         } 
-                        </script>
-                       
+                    <script>
+                    const btn = document.querySelector('button');
+                    function random(number) {
+                    return Math.floor(Math.random() * (number+1));
+                    }
+                    btn.onclick = function() {
+                    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+                    document.body.style.backgroundColor = rndCol;
+                    </script>  
                         <button type="button" class="button" name="Activate" onclick="testFunction()">Activate</button>
 
                     </li>
