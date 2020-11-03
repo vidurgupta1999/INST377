@@ -1,86 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<body>
 
-    <head>
-        <meta charset="utf-8">
-        <title>Lab 5- Vidur Gupta</title>
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Vidur Gupta's Lab 5</h1>
-            <form method="post" action="/api">
-                <ul style="list-style-type:none;">
-                    <li>
-                        <label for="first_name">First Name</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name here">
-                    </li>
-                    <li>
-                        <label for="last_name">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="Enter your last name here">
-                    </li>
-                    <li>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email here">
-                    </li>
-                    <li>
-                        <label for="phone_number">Phone Number</label>
-                        <input type="tel" id="phone_number" name="phone number" placeholder="Enter your phone number here">
-                    </li>
-                    <li>
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" cols="33" placeholder="Enter your message here"></textarea>
-                    </li>
-                    <li>
-                        <p>Age</p>
-                        <ul class="flex-inner">
-                                <li>
-                                    <label for="18-35">20-40</label>
-                                    <input type="checkbox" id="18-35" name="Adult">
-                                </li>
-                                <li>
-                                    <label for="35-50">35-50</label>
-                                    <input type="checkbox" id="35-50" name="Middle Aged">
-                                </li>
-                                <li>
-                                    <label for="50-65">50-65</label>
-                                    <input type="checkbox" id="50-65" name="senior">
-                                </li>
-                            
-                        </ul>
-                    </li>
-                    <li>
-                        <button type="button" class="button" name="Submit" onclick="submitform()">Submit Form</button>
-                        <button type="button" class="button" name="Submit" onclick="center()">Center</button>
+<h1>Show Checkboxes</h1>
 
-                <script>
-                    function center () {
-                        display: flex;
-                        align-items; center;
-                    }
-                </script>
-                    <script>
-                    const btn = document.querySelector('button');
-                    function random(number) {
-                    return Math.floor(Math.random() * (number+1));
-                    }
-                    btn.onclick = function() {
-                    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
-                    }
-                    document.body.style.backgroundColor = rndCol;s
-                    </script>  
-                        <button type="button" class="button" name="Activate" onclick="testFunction()">Activate</button>
+<form action="/action_page.php">
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br><br>
+  <input type="submit" value="Submit">
+</form>
 
-                    </li>
-
-
-
-                </ul>
-            </form>
-        </div>
-    </body>
-
-
-
-</html>
-                    
+</body>
+</html> 
