@@ -46,7 +46,7 @@ document.body.addEventListener('submit', async (e) => {
       const ul = docuemnt.createElement('ul');
       ul.className = 'flex-inner';
       $('form').prepend(ul);
-      reverseList.forEach((el, i)  = {
+      reverseList.forEach((el, i)  => {
         const li = document.createElement('li');
         $(li).append(`<input type="checkbox" value = ${el.code} id=${el.code}/> `);
         $(li).append(`<label for = ${el.code}>${el.name} </label>`);
