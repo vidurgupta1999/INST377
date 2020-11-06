@@ -1,8 +1,9 @@
-function convertRestaurantsToCategories(restaurantList) {
+// FINISH THIS FUNCTIONfunction convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
   return list;
 }
 
+function (convertRestaurantsToCategories)
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
   CanvasJS.addColorSet('customColorSet1', [
@@ -61,6 +62,6 @@ document.body.addEventListener('submit', async (e) => {
     .then((fromServer) => fromServer.json())
     .then((jsonFromServer) => runThisWithResultsFromServer(jsonFromServer))
     .catch((err) => {
-      console.log(err);
+      console.loglist(err);
     });
 });
