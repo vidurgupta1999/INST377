@@ -38,7 +38,7 @@ app
     );
     const jsondata = data.json();
     res.send("Hello World");
-    res.json(countries)
+    res.json(countries);
   });
 
 app.listen(port, () => {
