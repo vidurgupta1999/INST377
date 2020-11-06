@@ -1,6 +1,6 @@
 function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+  const min = Math.ceil(min);
+  const max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
@@ -43,7 +43,7 @@ document.body.addEventListener("submit", async (e) => {
         return fromServer[number];
       });
 
-      const reverseList = newArr2.sort((a, b) => sortByKey(b, a, "name"));
+      const reverseList = newArr2.sort((a, b) => sortFunction(b, a, "name"));
       const ul = document.createElement("ul");
       ul.className = "flex-inner";
       $("form").prepend(ul);
