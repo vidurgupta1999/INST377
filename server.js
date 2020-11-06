@@ -4,7 +4,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
-import countries from "./public/lab_6/countries.js";
+//import countries from "./public/lab_6/countries.js";
 
 dotenv.config();
 
@@ -33,12 +33,13 @@ app
   })
   .post(async (req, res) => {
     console.log("POST request detected");
-    //const data = await fetch(
-     // "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
-    //);
-    //const jsondata = data.json();
+    const data = await fetch(
+      "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+    );
+    const jsondata = data.json();
     //res.send("Hello World");
-    res.json(countries);
+    //res.json(countries);
+    res.json(jsondata)
   });
 
 app.listen(port, () => {
