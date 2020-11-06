@@ -39,14 +39,13 @@ document.body.addEventListener('submit', async (e) => {
       const newArr = range(10);
       const newArr2 = newArr.map(() => {
         const number = getRandomIntInclusive(0, 243);
-        return fromServer(number);
+        return fromServer[number];
       });
     
       const reverseList = newArr2.sort((a, b) => sortByKey(org, compare, 'name'));
       const ul = docuemnt.createElement('ul');
       ul.className = 'flex-inner';
       $('form').prepend(ul);
-    }
 
       reverseList.forEach(el, i) = {
         const li = document.createElement('li');
