@@ -25,7 +25,7 @@ function sortFunction(a, b, key) {
 document.body.addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = $(e.target).serializeArray();
-  fetch("/api", {
+  fetch('/api', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
