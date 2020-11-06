@@ -12,16 +12,25 @@
   
   <h1>Show Checkboxes</h1>
   
-  <form action="/action_page.php">
-    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-    <label for="vehicle1"> I have a bike</label><br>
-    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-    <label for="vehicle2"> I have a car</label><br>
-    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-    <label for="vehicle3"> I have a boat</label><br><br>
-    <input type="submit" value="Submit">
-  </form>
+  <div class = "wrapper">
+    <div class = "container flex-outer">
+      <div class = "header">
+        <h1> Vidur Gupta's Lab 6</h1>
+      </div>
+
+        <form>
+        <button type="submit" class="submitButton" name="submitButton">Create A Checklist</button>
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+          <label for="vehicle2"> I have a car</label><br>
+          <label for="vehicle3"> I have a boat</label><br><br>
+        </form>
+    </div>
+  </div>
+
   
+  
+  <script src="script.js"></script>
   </body>
   </html>
   

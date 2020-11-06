@@ -1,9 +1,24 @@
-function range(int) {
-
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
 }
 
-function sortByKey(org, compare, key) {
+function range(int) {
+  const arr = [];
+  for (let i = 0; i < int; i += 1) {
+    arr.push(i);
+  }
+  return arr;
+}
 
+function sortFunction(a, b, key) {
+  if (a[key] < b[key]) {
+    return -1;
+  } if (a[key] > b[key]) {
+    return 1;
+  }
+  return 0;
 }
 
 document.body.addEventListener('submit', async (e) => {
@@ -33,15 +48,15 @@ document.body.addEventListener('submit', async (e) => {
       $('form').prepend(ul);
     }
 
-      reverseList.forEeach(el, i) =. {
+      reverseList.forEach(el, i) = {
         const li = document.createElement('li');
-        $(li).append('<inpuut type="checkbox' value =$9el.code) id=$(el.code) /> );
-        $(li).append(<labeel for$(el.code).$(el.name)</label>');
+        $(li).append(`<input type="checkbox" value = ${el.code} id=${el.code}/> `);
+        $(li).append(`<label for = ${el.code}>${el.name} </label>`);
         $(ul).append(li);
       });
 
     })
 
-    .catch((err) => console.log(err)
+    .catch((err) => console.log(err))
 
   });
