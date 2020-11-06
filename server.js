@@ -33,11 +33,11 @@ app
   })
   .post(async (req, res) => {
     console.log("POST request detected");
-    const data = await fetch(
-      "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
-    );
-    const jsondata = data.json();
-    res.send("Hello World");
+    //const data = await fetch(
+     // "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+    //);
+    //const jsondata = data.json();
+    //res.send("Hello World");
     res.json(countries);
   });
 
