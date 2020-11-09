@@ -1,9 +1,29 @@
-// FINISH THIS FUNCTIONfunction convertRestaurantsToCategories(restaurantList) {
-  // process your restaurants here!
-  return list;
+// FINISH THIS FUNCTION
+
+function convertRestaurantsToCategories(restaurantList) {
+  const categoryArray = [];
+  const result = {};
+  for (let i = 0; i<categoryArray.length; i+=1)
+  {
+    categoryArray.push(resturantlist[i].category);
+}
+// console.log(categoryArray);
+
+for (let i = 0; i<categoryArray.length; i+=1) {
+  if(!result[categoryArray[[i]]0 {
+    result[categoryArray[i]] = 0; 
+  }
+  result[categoryArray[i]] += 1;
+
+const reply = Object.keys(result).map((category => ({
+  y: result[category],
+  label: category
+}))
+
+console.log('reply', reply);
+return reply;
 }
 
-function (convertRestaurantsToCategories)
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
   CanvasJS.addColorSet('customColorSet1', [
