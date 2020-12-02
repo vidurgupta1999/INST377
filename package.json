@@ -20,7 +20,9 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
-    "recursive-readdir": "^2.2.2"
+    "recursive-readdir": "^2.2.2",
+    "sqlite": "^4.0.17",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "email-validator": "^2.0.4",
@@ -32,5 +34,12 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-import": "^2.22.0"
+  },
+  "scripts": {
+    "test": "node --experimental-modules lab_utils/html_validation_error_gen.js",
+    "test2": "node --experimental-modules lab_utils/html_validation_error_gen.js && npx cypress open",
+    "sql-clear": "rm -rf tmp && mkdir tmp",
+    "start": "nodemon server.js"
   }
 }
+
