@@ -45,7 +45,7 @@ app.route('/sql')
     // This output must be converted to SQL
     res.json(output);
   });
-  
+
 
   async function dataFetch() {
     const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
@@ -99,6 +99,15 @@ async function insertIntoDB(data) {
 		}
 
 }
+
+data.forEach((entry) => {
+  const restaurant_name = entry.name;
+  const category = entry.category;
+
+  await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
+  }
+  )
+
 
   
   
