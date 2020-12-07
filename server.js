@@ -99,19 +99,7 @@ async function insertIntoDB(data) {
 		console.log(e);
 		}
 
-}
-
-data.forEach((entry) => {
-  const restaurant_name = entry.name;
-  const category = entry.category;
-
-  await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
-  }
-  )
-
-
-  
-  
+}  
   console.log(`Example app listening on port ${port}!`);
 });
 
