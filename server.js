@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const dbSettings = {
-  filename: './tmp/database.db',s
+  filename: './tmp/database.db',
   driver: sqlite3.Database
 };
 
@@ -56,7 +56,7 @@ app
     return response.json()
   
   }
-  
+
   async function databaseInitialize(dbSettings) {
     try {
       const db = await open(dbSettings);
@@ -67,6 +67,8 @@ app
         `)
   
       const data = await dataFetch();
+      data.forEach((entry) => { insertIntoDB(entry) });
+  
   
       const test = await db.get("SELECT * FROM restaurants")
       console.log(test);
@@ -78,6 +80,11 @@ app
   
     }
   }
+  async function query(db) {
+    const result = await db.all(`SELECT category, COUNT(restaurant_name) FROM restaurants GROUP BY category`);
+    return result;
+  }
+  
   
   console.log(`Example app listening on port ${port}!`);
 });
