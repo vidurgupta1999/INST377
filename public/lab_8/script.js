@@ -1,42 +1,3 @@
-function convertRestaurantsToCategories(restaurantList) {
-  const categoryArray = [];
-  const result = {};
-  for (let i = 0; i < restaurantList.length; i += 1) {
-    categoryArray.push(restaurantList[i].category);
-  }
-  // console.log(categoryArray);
-  for (let i = 0; i < categoryArray.length; i += 1) {
-    if (!result[categoryArray[i]]) {
-      result[categoryArray[i]] = 0;
-    }
-    result[categoryArray[i]] += 1;
-  }
-
-  const reply = Object.keys(result).map((category) => ({
-    y: result[category],
-    label: category
-  }));
-
-  console.log('reply',reply);
-  return reply;
-}
-
-function convertRestaurantsToCategories(restaurantList) {
-  return restaurantList.reduce((collection, currentItem, index) => {
-    const findCat = collection.find((f) => f.label === currentItem.category);
-    if (!findCat) {
-      collection.push({
-        label: item.category,
-        y: 1
-      });
-    } else {
-      const position = collection.findIndex((el) => el.label === item.category);
-      collection[position].y += 1;
-    }
-    return collection;
-  }, []);
-}
-
 // return array.reduce((collection, item, i) => {
 //   // for each item, check if we have a category for that item already
 //   const findCat = collection.find((findItem) => findItem.label === item.category);
@@ -110,7 +71,7 @@ function runThisWithResultsFromServer(jsonFromServer) {
       '#F2E75A'
     ]);
 
-  const dataPoints = convertRestaurantsToCategories(jsonFromServer);
+  const dataPoints = jsonFromServer;
   const options = makeYourOptionsObject(dataPoints);
 
   const chart = new CanvasJS.Chart('chartContainer', options);
@@ -123,7 +84,7 @@ function runThisWithResultsFromServer(jsonFromServer) {
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray();
-  fetch('/api', {
+  fetch('/sql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
