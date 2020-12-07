@@ -21,22 +21,6 @@ function convertRestaurantsToCategories(restaurantList) {
   return reply;
 }
 
-function convertRestaurantsToCategories(restaurantList) {
-  return restaurantList.reduce((collection, currentItem, index) => {
-    const findCat = collection.find((f) => f.label === currentItem.category);
-    if (!findCat) {
-      collection.push({
-        label: item.category,
-        y: 1
-      });
-    } else {
-      const position = collection.findIndex((el) => el.label === item.category);
-      collection[position].y += 1;
-    }
-    return collection;
-  }, []);
-}
-
 // return array.reduce((collection, item, i) => {
 //   // for each item, check if we have a category for that item already
 //   const findCat = collection.find((findItem) => findItem.label === item.category);

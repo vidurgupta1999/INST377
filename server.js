@@ -47,59 +47,55 @@ app.route('/sql')
   });
 
 
-  async function dataFetch() {
-    const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
-    const response = await fetch(url);
+async function dataFetch() {
+  const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
+  const response = await fetch(url);
   
-    return response.json()
-  
-  }
+  return response.json()
+}
 
-  async function databaseInitialize(dbSettings) {
-    try {
-      const db = await open(dbSettings);
-      await db.exec(`CREATE TABLE IF NOT EXISTS restaurants (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        restaurant_name TEXT,
-        category TEXT)
-        `)
+async function databaseInitialize(dbSettings) {
+  try {
+    const db = await open(dbSettings);
+    await db.exec(`CREATE TABLE IF NOT EXISTS restaurants (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      restaurant_name TEXT,
+      category TEXT)
+      `)
   
-      const data = await dataFetch();
-      data.forEach((entry) => { insertIntoDB(entry) });
+    const data = await dataFetch();
+    data.forEach((entry) => { insertIntoDB(entry) });
   
   
-      const test = await db.get("SELECT * FROM restaurants")
-      console.log(test);
-  
-    }
-    catch(e) {
-      console.log("Error loading Database");
-      console.log(e);
-  
-    }
+    const test = await db.get("SELECT * FROM restaurants")
+    console.log(test);
   }
-  
-  async function query(db) {
-    const result = await db.all(`SELECT category, COUNT(restaurant_name) FROM restaurants GROUP BY category`);
-    return result;
+  catch(e) {
+    console.log("Error loading Database");
+    console.log(e);
   }
+}
+  
+async function query(db) {
+  const result = await db.all(`SELECT category, COUNT(restaurant_name) FROM restaurants GROUP BY category`);
+  return result;
+}
 
 
 async function insertIntoDB(data) {
-	try {
-		const restaurant_name = data.name;
-		const category = data.category;
+try {
+  const restaurant_name = data.name;
+  const category = data.category;
 
-		await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
+await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
 		console.log(`${restaurant_name} and ${category} inserted`);
 		}
 
 	catch(e) {
 		console.log('Error on insertion');
 		console.log(e);
-		}
-
-  console.log(`Example app listening on port ${port}!`);
+    }
+}
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
