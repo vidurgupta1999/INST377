@@ -78,6 +78,7 @@ app.route('/sql')
   
     }
   }
+  
   async function query(db) {
     const result = await db.all(`SELECT category, COUNT(restaurant_name) FROM restaurants GROUP BY category`);
     return result;
