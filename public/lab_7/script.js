@@ -1,40 +1,64 @@
-// FINISH THIS FUNCTION
-
 function convertRestaurantsToCategories(restaurantList) {
   const categoryArray = [];
   const result = {};
-  for (let i = 0; i<categoryArray.length; i+=1)
-  {
-    categoryArray.push(resturantlist[i].category);
-}
-// console.log(categoryArray);
-
-for (let i = 0; i<categoryArray.length; i+=1) {
-  if(!result[categoryArray[[i]]0 {
-    result[categoryArray[i]] = 0; 
+  for (let i = 0; i < restaurantList.length; i += 1) {
+    categoryArray.push(restaurantList[i].category);
   }
-  result[categoryArray[i]] += 1;
+  // console.log(categoryArray);
+  for (let i = 0; i < categoryArray.length; i += 1) {
+    if (!result[categoryArray[i]]) {
+      result[categoryArray[i]] = 0;
+    }
+    result[categoryArray[i]] += 1;
+  }
 
-const reply = Object.keys(result).map((category => ({
-  y: result[category],
-  label: category
-}))
+  const reply = Object.keys(result).map((category) => ({
+    y: result[category],
+    label: category
+  }));
 
-console.log('reply', reply);
-return reply;
+  console.log('reply',reply);
+  return reply;
 }
+
+function convertRestaurantsToCategories(restaurantList) {
+  return restaurantList.reduce((collection, currentItem, index) => {
+    const findCat = collection.find((f) => f.label === currentItem.category);
+    if (!findCat) {
+      collection.push({
+        label: item.category,
+        y: 1
+      });
+    } else {
+      const position = collection.findIndex((el) => el.label === item.category);
+      collection[position].y += 1;
+    }
+    return collection;
+  }, []);
+}
+
+// return array.reduce((collection, item, i) => {
+//   // for each item, check if we have a category for that item already
+//   const findCat = collection.find((findItem) => findItem.label === item.category);
+//   if (!findCat) {
+//     collection.push({
+//       label: item.category,
+//       y: 1
+//     });
+//   } else {
+//     const position = collection.findIndex((el) => el.label === item.category);
+//     collection[position].y += 1;
+//   }
+//   return collection;
+// }, []);
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-  CanvasJS.addColorSet('customColorSet1', [
-    // add an array of colors here https://canvasjs.com/docs/charts/chart-options/colorset/
-  ]);
-
   return {
     animationEnabled: true,
-    colorSet: 'customColorSet1',
+    colorSet: 'miscAdobe',
     title: {
-      text: 'Change This Title'
+      text: 'Places To Eat Out In Future'
     },
     axisX: {
       interval: 1,
@@ -43,9 +67,25 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
     axisY2: {
       interlacedColor: 'rgba(1,77,101,.2)',
       gridColor: 'rgba(1,77,101,.1)',
-      title: 'Change This Title',
+      title: 'Restaurants By Category',
       labelFontSize: 12,
-      scaleBreaks: {customBreaks: []} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      scaleBreaks: {
+        customBreaks: [{
+          startValue: 40,
+          endValue: 50,
+          color: 'orange'
+        },
+        {
+          startValue: 85,
+          endValue: 100,
+          color: 'orange'
+        },
+        {
+          startValue: 140,
+          endValue: 175,
+          color: 'orange'
+        }]
+      }
     },
     data: [{
       type: 'bar',
@@ -57,18 +97,29 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
 }
 
 function runThisWithResultsFromServer(jsonFromServer) {
+  // This should become a list of restaurants by category
   console.log('jsonFromServer', jsonFromServer);
-  sessionStorage.setItem('restaurantList', JSON.stringify(jsonFromServer)); // don't mess with this, we need it to provide unit testing support
-  // Process your restaurants list
-  // Make a configuration object for your chart
-  // Instantiate your chart
-  const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
-  const options = makeYourOptionsObject(reorganizedData);
+  sessionStorage.setItem('restaurantList', JSON.stringify(jsonFromServer));
+  CanvasJS.addColorSet('miscAdobe',
+    [// colorSet Array
+
+      '#4F61F7',
+      '#5DDDFC',
+      '#60E69F',
+      '#94FC5D',
+      '#F2E75A'
+    ]);
+
+  const dataPoints = convertRestaurantsToCategories(jsonFromServer);
+  const options = makeYourOptionsObject(dataPoints);
+
   const chart = new CanvasJS.Chart('chartContainer', options);
   chart.render();
+  $(window).on('resize', () => {
+    chart.render();
+  });
 }
 
-// Leave lines 52-67 alone; do your work in the functions above
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray();
@@ -82,6 +133,6 @@ document.body.addEventListener('submit', async (e) => {
     .then((fromServer) => fromServer.json())
     .then((jsonFromServer) => runThisWithResultsFromServer(jsonFromServer))
     .catch((err) => {
-      console.loglist(err);
+      console.log(err);
     });
 });
