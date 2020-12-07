@@ -31,23 +31,21 @@ app.use((req, res, next) => {
   next();
 });
 
-app
-  .route("/api")
-  .get(async (req, res) => {
-    console.log("GET request detected");
-    //console.log("fetch request data", json);
-    //res.send(`Lab 5 for ${process.env.NAME}`);
+app.route('/sql')
+  .get((req, res) => {
+    console.log('GET detected');
   })
   .post(async (req, res) => {
-    console.log("POST request detected");
-    const data = await fetch(
-      "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
-    );
-    const jsondata = data.json();
-    //res.send("Hello World");
-    //res.json(countries);
-    res.json(jsondata)
+    console.log('POST request detected');
+    console.log('Form data in res.body', req.body);
+    // This is where the SQL retrieval function will be:
+    // Please remove the below variable
+		const db = await open(dbSettings);
+    const output = await query(db);
+    // This output must be converted to SQL
+    res.json(output);
   });
+  
 
   async function dataFetch() {
     const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
@@ -84,6 +82,24 @@ app
     const result = await db.all(`SELECT category, COUNT(restaurant_name) FROM restaurants GROUP BY category`);
     return result;
   }
+
+
+async function insertIntoDB(data) {
+	try {
+		const restaurant_name = data.name;
+		const category = data.category;
+
+		await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
+		console.log(`${restaurant_name} and ${category} inserted`);
+		}
+
+	catch(e) {
+		console.log('Error on insertion');
+		console.log(e);
+		}
+
+}
+
   
   
   console.log(`Example app listening on port ${port}!`);
