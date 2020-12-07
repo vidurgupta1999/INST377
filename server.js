@@ -1,9 +1,9 @@
 // These are our required libraries to make the server work.
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import express from "express";
-import dotenv from "dotenv";
-import fetch from "node-fetch";
+import express from 'express';
+import dotenv from 'dotenv';
+import fetch from 'node-fetch';
 import { open } from 'sqlite';
 import sqlite3 from 'sqlite3';
 //import countries from "./public/lab_6/countries.js";
