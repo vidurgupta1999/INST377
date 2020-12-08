@@ -71,8 +71,7 @@ function runThisWithResultsFromServer(jsonFromServer) {
       '#F2E75A'
     ]);
 
-  const dataPoints = convertRestaurantsToCategories(jsonFromServer);
-  const options = makeYourOptionsObject(dataPoints);
+  const options = makeYourOptionsObject(jsonFromServer);
 
   const chart = new CanvasJS.Chart('chartContainer', options);
   chart.render();
